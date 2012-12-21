@@ -1,6 +1,4 @@
-(defn exp [x n]
-  (reduce * (repeat n x))
-  )
+(load-file "src/solutions/common-functions.clj")
 
 (defn base-func
   [x]
@@ -13,8 +11,6 @@
       )
   )
   )
-
-(defn remove-index [coll n] (vec (concat (subvec coll 0 n) (subvec coll (+ 1 n)))))
 
 (defn op [order n]
   "Optimum Polynomial using Lagrange interpolation"
