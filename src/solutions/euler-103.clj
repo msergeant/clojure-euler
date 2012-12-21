@@ -39,17 +39,34 @@
 )
 
 ;;{11, 17, 20, 22, 23, 24}
+;;{22, 33, 39, 42, 44, 45, 46}
 (defn euler-103 []
-  (reduce min (for
-    [a (range 9 12)
-     b (range 15 19)
-     c (range 18 22)
-     d (range 20 24)
-     e (range 21 25)
-     f (range 22 26)]
+  (let [candidates (for
+    [a (range 20 24)
+     b (range 31 35)
+     c (range 37 41)
+     d (range 40 44)
+     e (range 42 46)
+     f (range 43 47)
+     g (range 44 48)
+     :when (and (< a b) (< b c) (< c d) (< d e) (< e f) (< f g))]
     (let [x [a b c d e f]]
     (if (and (test-cond-i x) (test-cond-ii x))
-      (reduce + x)
-      99999999))
-          ))
+      x
+      nil))
+          )]
+    (loop
+      [iterator 0
+       min-sum 999999
+       sum-string ""]
+      (if (>= iterator (count candidates))
+        sum-string
+        (let [cand-sum (reduce + (nth candidates iterator))]
+          (if (or (nil? (nth candidates iterator)) (< min-sum cand-sum))
+            (recur (inc iterator) min-sum sum-string)
+            (recur (inc iterator) cand-sum (reduce str (nth candidates iterator))))
+          )
+        )
+    )
   )
+)
