@@ -36,4 +36,4 @@
 
 
 ;; Solution: 20313839404245
-;; Time: 53 seconds
+;; Time: 17 seconds

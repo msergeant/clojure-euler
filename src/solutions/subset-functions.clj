@@ -19,7 +19,9 @@
   (reduce (fn [x y] (and x y)) 
           (for [ x (range 1 (exp 2 (count coll)))
                  y (range 1 (exp 2 (count coll)))
-                 :when (and (> y x) (= 0 (bit-and x y)))]
+                 :when (and (> y x) 
+                            (= 0 (bit-and x y))
+                            (= (bit-count x) (bit-count y)))]
                  (not= (sum-subset coll x) (sum-subset coll y))
             )
     )
