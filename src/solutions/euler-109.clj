@@ -15,8 +15,11 @@
       (reduce + (for [i (range 0 (count all-spots))
                       j (range 0 (count all-spots))
                       k dos
-                       :when (and (< (+ i j k) 100) (<= i j))]
+                       :when (and (< (+ (nth all-spots i) (nth all-spots j) k) 100) (<= i j))]
                      1))
       )
     )
   )
+
+;; Solution: 38182
+;; Time: 156 msec
