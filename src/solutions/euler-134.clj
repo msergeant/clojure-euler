@@ -8,6 +8,8 @@
             )
     )
   )
-(println (S 19 23))
 (defn euler-134 []
+  (reduce + (for [x (range 1 (count consecutive-primes))]
+    (S (nth consecutive-primes (- x 1)) (nth consecutive-primes x)))
+          )
   )
