@@ -1,4 +1,5 @@
 (use '[clojure.contrib.generic.math-functions])
+(use '[clojure.math.numeric-tower :only [expt]])
 
 (defn log10 [n] (/ (clojure.contrib.generic.math-functions/log n) (clojure.contrib.generic.math-functions/log 10)))
 

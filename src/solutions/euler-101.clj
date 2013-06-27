@@ -7,7 +7,7 @@
      sum 0]
     (if (> iterator 10)
       sum
-      (recur (inc iterator) (+ sum (* (exp -1 iterator) (exp x iterator))))
+      (recur (inc iterator) (+ sum (* (expt -1 iterator) (expt x iterator))))
       )
   )
   )
