@@ -36,29 +36,27 @@
     false)
   )
 
-(defn count-solutions [n]
-  (reduce +
-          (map
-            (fn [x]
-              (if (= 0 (mod n x))
-                (reduce + [(if (meets? x (/ n x)) 1 0) (if (and (not (= (/ n x) x)) (meets? (/ n x) x)) 1 0)])
-                0
-              )
-            )
-            (range 1 (+ 1 (sqrt n)))
-          )
-  )
+(defn euler-135 [n]
+  (loop
+    [i 1
+     values (vec (replicate (+ 1 n) 0))
+     ]
+    (if (> i n)
+      (reduce (fn [x y] (if (= y 10) (+ 1 x) x)) 0 values)
+      (recur
+        (inc i)
+        (loop
+            [j 1
+             acc values]
+              (if (> i (/ n j))
+                acc
+                (let [q (* i j)
+                      new-acc (if (meets? i j)
+                                  (assoc acc q (+ (nth acc q) 1))
+                                  acc)]
+                  (recur (inc j) new-acc)))))))
 )
-
-(defn euler-135 []
-  (reduce +
-          (map
-            (fn [x]
-              (if (= 10 (count-solutions x))
-                1
-                0))
-            (range 1 1000000))))
 
 
 ;; Solution: 4989
-;; Time: 228 seconds
+;; Time: 13.4 seconds
